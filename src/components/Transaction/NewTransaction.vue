@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid itemsgrid-list-xl>
+  <v-container fluid itemsgrid-list-xl elevation-3>
     <v-layout row justify-space-center>
       <v-flex xs10 offset-xs1
         sm6 offset-sm3 left>
@@ -140,6 +140,7 @@ export default {
 
   created: function () {
     this.date = this.parseDate(this.dateFormatted)
+
   },
 
   methods: {
