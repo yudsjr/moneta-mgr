@@ -39,40 +39,30 @@
       </v-flex>
     </v-layout>
 
-
     <v-layout row justify-space-center class="pb-5">
-      <v-flex xs2 offset-xs2>
-        <v-btn block color="primary" dark large style="height: 200%">1</v-btn>
+      <v-flex xs5 offset-xs1>
+        <v-btn block color="primary" dark large style="height: 230%; width: 100%">1</v-btn>
       </v-flex>
-      <v-flex xs2 offset-xs1>
-        <v-btn block color="primary" dark large style="height: 200%">2</v-btn>
-      </v-flex>
-      <v-flex xs2 offset-xs1>
-        <v-btn block color="primary" dark large style="height: 200%">3</v-btn>
+      <v-flex xs5>
+        <v-btn block color="primary" dark large style="height: 230%; width: 100%">2</v-btn>
       </v-flex>
     </v-layout>
     <v-spacer></v-spacer>
     <v-layout row justify-space-center class="pb-5">
-      <v-flex xs2 offset-xs2>
-        <v-btn block color="primary" dark large style="height: 200%">4</v-btn>
+      <v-flex xs5 offset-xs1>
+        <v-btn block color="primary" dark large style="height: 230%; width: 100%">3</v-btn>
       </v-flex>
-      <v-flex xs2 offset-xs1>
-        <v-btn block color="primary" dark large style="height: 200%">5</v-btn>
-      </v-flex>
-      <v-flex xs2 offset-xs1>
-        <v-btn block color="primary" dark large style="height: 200%">6</v-btn>
+      <v-flex xs5>
+        <v-btn block color="primary" dark large style="height: 230%; width: 100%">4</v-btn>
       </v-flex>
     </v-layout>
     <v-spacer></v-spacer>
     <v-layout row justify-space-center class="pb-5">
-      <v-flex xs2 offset-xs2>
-        <v-btn block color="primary" dark large style="height: 200%">7</v-btn>
+      <v-flex xs5 offset-xs1>
+        <v-btn block color="primary" dark large style="height: 230%; width: 100%">5</v-btn>
       </v-flex>
-      <v-flex xs2 offset-xs1>
-        <v-btn block color="primary" dark large style="height: 200%">8</v-btn>
-      </v-flex>
-      <v-flex xs2 offset-xs1>
-        <v-btn block color="primary" dark large style="height: 200%">9</v-btn>
+      <v-flex xs5>
+        <v-btn block color="primary" dark large style="height: 230%; width: 100%">6</v-btn>
       </v-flex>
     </v-layout>
 
@@ -87,7 +77,7 @@ export default {
     return {
       // date
       date: null,
-      dateFormatted: moment(new Date().format('L')),
+      dateFormatted: moment(new Date()).format('L'),
       menu: false
     }
   },
