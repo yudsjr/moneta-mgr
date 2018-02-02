@@ -1,9 +1,9 @@
 <template>
   <v-container fluid grid-list-xs>
-    <v-layout row justify-space-center>
+    <v-layout row justify-space-center pb-3 pt-5>
       <v-flex xs10 offset-xs1
         sm6 offset-sm3 left>
-        <h1>New Transaction</h1>
+        <span class="headline">New Transaction</span>
       </v-flex>
     </v-layout>
     <v-layout row justify-space-center>
@@ -42,31 +42,89 @@
 
     <v-layout row justify-space-center class="pb-5">
       <v-flex xs5 offset-xs1>
-        <v-btn block color="primary" dark large style="height: 230%; width: 100%">1</v-btn>
+        <v-btn wrap block color="primary" dark large style="height: 230%; width: 100%"
+            @click="showSpeedDialog = true"
+        >
+          {{ option1 }}
+          <v-spacer></v-spacer>
+          <small>(BPI MasterCard)</small>
+        </v-btn>
       </v-flex>
       <v-flex xs5>
-        <v-btn block color="primary" dark large style="height: 230%; width: 100%">2</v-btn>
+        <v-btn wrap block color="primary" dark large style="height: 230%; width: 100%"
+            @click="showSpeedDialog = true"
+        >
+          {{ option2 }}
+          <v-spacer></v-spacer>
+          <small>(BPI MasterCard)</small>
+        </v-btn>
       </v-flex>
     </v-layout>
-    <v-spacer></v-spacer>
     <v-layout row justify-space-center class="pb-5">
       <v-flex xs5 offset-xs1>
-        <v-btn block color="primary" dark large style="height: 230%; width: 100%">3</v-btn>
+        <v-btn wrap block color="primary" dark large style="height: 230%; width: 100%"
+            @click="showSpeedDialog = true"
+        >
+          {{ option3 }}
+          <v-spacer></v-spacer>
+          <small>(BPI MasterCard)</small>
+        </v-btn>
       </v-flex>
       <v-flex xs5>
-        <v-btn block color="primary" dark large style="height: 230%; width: 100%">4</v-btn>
+        <v-btn wrap block color="primary" dark large style="height: 230%; width: 100%"
+            @click="showSpeedDialog = true"
+        >
+          {{ option4 }}
+          <v-spacer></v-spacer>
+          <small>(BPI MasterCard)</small>
+        </v-btn>
       </v-flex>
     </v-layout>
-    <v-spacer></v-spacer>
     <v-layout row justify-space-center class="pb-5">
       <v-flex xs5 offset-xs1>
-        <v-btn block color="primary" dark large style="height: 230%; width: 100%">5</v-btn>
+        <v-btn wrap block color="primary" dark large style="height: 230%; width: 100%"
+            @click="showSpeedDialog = true"
+        >
+          {{ option5 }}
+          <v-spacer></v-spacer>
+          <small>(BPI MasterCard)</small>
+        </v-btn>
       </v-flex>
       <v-flex xs5>
-        <v-btn block color="primary" dark large style="height: 230%; width: 100%">6</v-btn>
+        <v-btn wrap block color="primary" dark large style="height: 230%; width: 100%"
+            @click="showSpeedDialog = true"
+        >
+          {{ option6 }}
+          <v-spacer></v-spacer>
+          <small>small chars</small>
+        </v-btn>
+      </v-flex>
+    </v-layout>
+    <v-layout row justify-space-center class="pb-5">
+      <v-flex xs8 offset-xs2>
+        <v-btn block color="primary" dark large style="height: 230%; width: 100%">New Transaction</v-btn>
       </v-flex>
     </v-layout>
 
+    <v-dialog v-model="showSpeedDialog" persistent max-width="500px">
+      <v-card>
+    	<v-card-title>
+    	  <span class="headline">User Profile</span>
+    	</v-card-title>
+    	<v-card-text>
+    	  <v-container grid-list-md>
+    		<v-layout wrap>
+    		  <large>content</large>
+    		</v-layout>
+    	  </v-container>
+    	</v-card-text>
+    	<v-card-actions>
+    	  <v-spacer></v-spacer>
+    	  <v-btn color="blue darken-1" flat @click.native="showSpeedDialog = false">Close</v-btn>
+    	  <v-btn color="blue darken-1" flat @click.native="showSpeedDialog = false">Save</v-btn>
+    	</v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -79,7 +137,17 @@ export default {
       // date
       date: null,
       dateFormatted: moment(new Date()).format('L'),
-      menu: false
+      menu: false,
+
+      // options
+      option1: "Food",
+      option2: "Grocery",
+      option3: "Parking",
+      option4: "Gas",
+      option5: "Social",
+      option6: "Toothless",
+
+      showSpeedDialog: false
     }
   },
 
