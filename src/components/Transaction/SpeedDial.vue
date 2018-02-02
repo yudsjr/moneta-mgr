@@ -25,6 +25,7 @@
             v-model="dateFormatted"
             prepend-icon="event"
             @blur="date = parseDate(dateFormatted)"
+            readonly
           ></v-text-field>
           <v-date-picker v-model="date" @input="dateFormatted = formatDate($event)" no-title scrollable actions>
             <template slot-scope="{ save, cancel }">
