@@ -132,6 +132,7 @@
           <v-container grid-list-md>
             <v-layout wrap>
               <v-text-field
+                type="number"
                 label="Amount"
                 prefix="P"
               ></v-text-field>
