@@ -17,7 +17,7 @@
     "vue": "^2.5.3",
     "vue-router": "^3.0.1",
     "vue-select": "github:sagalbot/vue-select",
-    "vuetify": "^0.17.4",
+    "vuetify": "^1.0.1",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
