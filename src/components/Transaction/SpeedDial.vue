@@ -1,4 +1,4 @@
-<template>
+showDialog()<template>
   <v-container fluid grid-list-xs>
     <!-- Header -->
     <v-layout row pb-3 pt-5>
@@ -47,7 +47,7 @@
     <v-layout align-center>
       <v-flex xs5 offset-xs1 sm3 offset-sm3 text-xs-center>
         <div>
-          <v-btn block color="primary" dark style="height: 230%; padding: 25px" @click="showSpeedDialog = true">
+          <v-btn block color="primary" dark style="height: 230%; padding: 25px" @click="showDialog()">
             <div>
               <span class="subheading">{{option1.category}}</span><br />
               <small>{{option1.account}}</small>
@@ -57,7 +57,7 @@
       </v-flex>
       <v-flex xs5 sm3 text-xs-center>
         <div>
-          <v-btn block color="primary" dark style="height: 230%; padding: 25px" @click="showSpeedDialog = true">
+          <v-btn block color="primary" dark style="height: 230%; padding: 25px" @click="showDialog()">
             <div>
               <span class="subheading">{{option2.category}}</span><br />
               <small>{{option2.account}}</small>
@@ -71,7 +71,7 @@
     <v-layout align-center>
       <v-flex xs5 offset-xs1 sm3 offset-sm3 text-xs-center>
         <div>
-          <v-btn block color="primary" dark style="height: 230%; padding: 25px" @click="showSpeedDialog = true">
+          <v-btn block color="primary" dark style="height: 230%; padding: 25px" @click="showDialog()">
             <div>
               <span class="subheading">{{option3.category}}</span><br />
               <small>{{option3.account}}</small>
@@ -81,7 +81,7 @@
       </v-flex>
       <v-flex xs5 sm3 text-xs-center>
         <div>
-          <v-btn block color="primary" dark style="height: 230%; padding: 25px" @click="showSpeedDialog = true">
+          <v-btn block color="primary" dark style="height: 230%; padding: 25px" @click="showDialog()">
             <div>
               <span class="subheading">{{option4.category}}</span><br />
               <small>{{option4.account}}</small>
@@ -95,7 +95,7 @@
     <v-layout align-center>
       <v-flex xs5 offset-xs1 sm3 offset-sm3 text-xs-center>
         <div>
-          <v-btn block color="primary" dark style="height: 230%; padding: 25px" @click="showSpeedDialog = true">
+          <v-btn block color="primary" dark style="height: 230%; padding: 25px" @click="showDialog()">
             <div>
               <span class="subheading">{{option5.category}}</span><br />
               <small>{{option5.account}}</small>
@@ -105,7 +105,7 @@
       </v-flex>
       <v-flex xs5 sm3 text-xs-center>
         <div>
-          <v-btn block color="primary" dark style="height: 230%; padding: 25px" @click="showSpeedDialog = true">
+          <v-btn block color="primary" dark style="height: 230%; padding: 25px" @click="showDialog()">
             <div>
               <span class="subheading">{{option6.category}}</span><br />
               <small>{{option6.account}}</small>
@@ -135,6 +135,7 @@
                 type="number"
                 label="Amount"
                 prefix="P"
+                ref="amount"
               ></v-text-field>
             </v-layout>
           </v-container>
@@ -187,6 +188,10 @@ export default {
       }
       const [month, day, year] = date.split('/')
       return `${year}-${month.padStart(2, 0)}-${day.padStart(2, 0)}`
+    },
+    showDialog() {
+      this.showSpeedDialog = true
+      this.$nextTick(() => this.$refs.amount.focus())
     }
   },
 
