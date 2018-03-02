@@ -1,4 +1,4 @@
-showDialog()<template>
+<template>
   <v-container fluid grid-list-xs>
     <!-- Header -->
     <v-layout row pb-3 pt-5>
@@ -12,6 +12,7 @@ showDialog()<template>
     <v-layout row justify-space-center>
       <v-flex xs10 offset-xs1 sm6 offset-sm3 left>
         <v-menu
+          ref="menu"
           lazy
           :close-on-content-click="false"
           v-model="menu"
@@ -19,25 +20,20 @@ showDialog()<template>
           offset-y
           full-width
           :nudge-right="40"
-          max-width="290px"
           min-width="290px"
+          :return-value.sync="date"
         >
           <v-text-field
             slot="activator"
             label="Transaction Date"
-            v-model="dateFormatted"
+            v-model="date"
             prepend-icon="event"
-            @blur="date = parseDate(dateFormatted)"
             readonly
           ></v-text-field>
-          <v-date-picker v-model="date" @input="dateFormatted = formatDate($event)" no-title scrollable actions>
-            <template slot-scope="{ save, cancel }">
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn flat color="primary" @click="cancel">Cancel</v-btn>
-                <v-btn flat color="primary" @click="save">OK</v-btn>
-              </v-card-actions>
-            </template>
+          <v-date-picker v-model="date" no-title scrollable @change="$refs.menu.save(date)">
+            <v-spacer></v-spacer>
+            <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
+            <v-btn flat color="primary" @click="$refs.menu.save(date)">OK</v-btn>
           </v-date-picker>
         </v-menu>
       </v-flex>
@@ -116,9 +112,13 @@ showDialog()<template>
     </v-layout>
 
     <!-- Manual Transaction -->
-    <v-layout row justify-space-center class="pb-5">
-      <v-flex xs8 offset-xs2 sm4 offset-sm4>
-        <v-btn block color="primary" dark style="height: 150%; width: 100%">New Transaction</v-btn>
+    <v-layout align-center>
+      <v-flex xs10 offset-xs1 sm6 offset-sm3>
+        <v-btn block color="primary" dark style="height: 230%; padding: 12px" @click="showDialog()">
+          <div>
+            <span class="subheading">New Transaction</span>
+          </div>
+        </v-btn>
       </v-flex>
     </v-layout>
 
@@ -129,21 +129,23 @@ showDialog()<template>
           <span class="headline">User Profile</span>
         </v-card-title>
         <v-card-text>
-          <v-container grid-list-md>
-            <v-layout wrap>
-              <v-text-field
-                type="number"
-                label="Amount"
-                prefix="P"
-                ref="amount"
-              ></v-text-field>
+          <v-container fluid grid-list-xs>
+            <v-layout row align-center>
+              <v-text-field v-model="amount" type="number" label="Amount" prefix="P" ref="amount"></v-text-field>
+            </v-layout>
+            <v-layout row align-center>
+              <v-select v-model="account" :items="accountItems" label="Account" class="input-group--focused" item-value="text"></v-select>
+            </v-layout>
+            <v-layout row align-center>
+              <v-select v-model="category" :items="categoryItems" label="Category" class="input-group--focused" item-value="text"></v-select>
             </v-layout>
           </v-container>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" flat @click.native="showSpeedDialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" flat @click.native="showSpeedDialog = false">Save</v-btn>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" flat @click.native="submit()">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -160,6 +162,12 @@ export default {
       date: null,
       dateFormatted: moment(new Date()).format('L'),
       menu: false,
+
+      amount: null,
+      account: null,
+      accountItems:[ "BPI Savings", "Metrobank Debit", "Cash", "HSBC Visa", "BPI Mastercard" ],
+      category: null,
+      categoryItems: [ "Food", "Eat Out", "Parking", "Social", "Personal", "Groceries", "Car Care", "Gas", "Phone Bill", "Credit Card", "Rental", "Car Mortgage" ],
 
       // options
       option1: {category: "", account: ""},
@@ -192,6 +200,21 @@ export default {
     showDialog() {
       this.showSpeedDialog = true
       this.$nextTick(() => this.$refs.amount.focus())
+    },
+    submit() {
+      const transaction = {
+        date: this.date,
+        account:this.account,
+        category:this.category,
+        amount:this.amount
+      }
+      firebase.database().ref('Transactions').push(transaction)
+        .then((data) => {
+          this.showSpeedDialog = false
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     }
   },
 
@@ -212,6 +235,10 @@ export default {
     this.option4 = {category: "Credit Card", account: "Metrobank Debit"}
     this.option5 = {category: "Car Mortgage", account: "Metrobank Debit"}
     this.option6 = {category: "Emergency Fund", account: "Metrobank Debit"}
+    firebase.database().ref('/rdo/Accounts').once('value').then(function(snapshot){
+      console.log('asdf')
+      console.log(snapshot)
+    })
   }
 
 }
