@@ -165,9 +165,9 @@ export default {
 
       amount: null,
       account: null,
-      accountItems:[ "BPI Savings", "Metrobank Debit", "Cash", "HSBC Visa", "BPI Mastercard" ],
+      accountItems: [],
       category: null,
-      categoryItems: [ "Food", "Eat Out", "Parking", "Social", "Personal", "Groceries", "Car Care", "Gas", "Phone Bill", "Credit Card", "Rental", "Car Mortgage" ],
+      categoryItems: [],
 
       // options
       option1: {category: "", account: ""},
@@ -235,9 +235,9 @@ export default {
     this.option4 = {category: "Credit Card", account: "Metrobank Debit"}
     this.option5 = {category: "Car Mortgage", account: "Metrobank Debit"}
     this.option6 = {category: "Emergency Fund", account: "Metrobank Debit"}
-    firebase.database().ref('/rdo/Accounts').once('value').then(function(snapshot){
-      console.log('asdf')
-      console.log(snapshot)
+    firebase.database().ref('/rdo').once('value').then(rdo => {
+      this.accountItems = rdo.val().Accounts;
+      this.categoryItems = rdo.val().Categories;
     })
   }
 
