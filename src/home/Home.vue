@@ -43,8 +43,6 @@
         </v-layout>
       </v-container>
 
-      <v-btn color="primary" dark @click.stop="dialog = true">Open Dialog 1</v-btn>
-
       <v-dialog
         v-model="dialog"
         fullscreen
@@ -169,6 +167,16 @@
         </v-card>
       </v-dialog>
 
+      <v-dialog v-model="newExpenseDialog"
+        fullscreen
+        transition="dialog-bottom-transition"
+        :overlay="false"
+        scrollable>
+        <v-card tile>
+          <new-expense @close="closeDialog"></new-expense>
+        </v-card>
+      </v-dialog>
+
       <v-speed-dial
         v-model="fab"
         direction="top"
@@ -176,9 +184,8 @@
         style="position: fixed; bottom: 50px; right: 16px;">
         <v-btn dark fab hover
           slot="activator"
-          color="blue darken-2"
+          color="primary"
           v-model="fab"
-          @click.native="showSpeedDialTooltips = !showSpeedDialTooltips"
         >
           <v-icon>account_circle</v-icon>
           <v-icon>close</v-icon>
@@ -190,7 +197,7 @@
         <v-btn fab dark small color="indigo">
           <v-icon>add</v-icon>
         </v-btn>
-        <v-btn fab dark small color="red">
+        <v-btn fab dark small color="red" @click.native="newExpenseDialog = true">
           <v-icon>file_upload</v-icon>
         </v-btn>
       </v-speed-dial>
@@ -205,11 +212,20 @@
   </v-app>
 </template>
 <script>
+import NewExpense from '../components/Transaction/NewExpense'
 export default {
+  components: {
+    'new-expense': NewExpense
+  },
+  methods: {
+    closeDialog(data) {
+      this.newExpenseDialog = data
+    }
+  },
   data () {
     return {
+      newExpenseDialog: false,
       fab: false,
-      showSpeedDialTooltips: false,
       drawer: null,
       itemscard: [
         { action: '15 min', headline: 'Brunch this weekend?', title: 'Ali Connors', subtitle: "I'll be in your neighborhood doing errands this weekend. Do you want to hang out?" },

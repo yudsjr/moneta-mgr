@@ -12,15 +12,11 @@ import router from './router'
 
 import { store } from './store'
 
-/*
 Vue.use(Vuetify, {
   theme: {
-    primary: colors.cyan.darken2,
-    secondary: colors.cyan.lighten1
+    primary: colors.indigo.darken1
   }
 })
-*/
-Vue.use(Vuetify)
 
 Vue.config.productionTip = false
 
