@@ -12,28 +12,57 @@
       </v-toolbar-items>
     </v-toolbar>
 
-    <v-card-text>
-      <v-container fluid>
-        <v-layout justify-center align-center>
-          <v-flex xs12 sm6>
-            <v-list two-line mt-5>
-              <template v-for="(speedDial, index) in speedDials">
-                <v-list-tile avatar ripple :key="index" @click="">
-                  <v-list-tile-content>
-                    <v-list-tile-title>{{ speedDial.category }}</v-list-tile-title>
-                    <v-list-tile-sub-title class="text--primary">{{ speedDial.account }}</v-list-tile-sub-title>
-                  </v-list-tile-content>
-                  <v-list-tile-action>
-                    <v-list-tile-action-text>{{ speedDial.amount }}</v-list-tile-action-text>
-                  </v-list-tile-action>
-                </v-list-tile>
-                <v-divider v-if="index + 1 < speedDials.length" :key="`divider-${index}`"></v-divider>
-              </template>
-            </v-list>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-card-text>
+    <v-container itemsgrid-list-xl>
+      <v-layout>
+        <v-flex xs6 sm3>
+          <v-list>
+            <template v-for="(speedDial, index) in speedDials">
+              <v-list-tile avatar ripple :key="index" @click="">
+                <v-list-tile-content>
+                  <v-list-tile-title>{{ speedDial.category }}</v-list-tile-title>
+                  <v-list-tile-sub-title class="text--primary">{{ speedDial.account }}</v-list-tile-sub-title>
+                </v-list-tile-content>
+              </v-list-tile>
+              <v-divider v-if="index + 1 < speedDials.length" :key="`divider-${index}`"></v-divider>
+            </template>
+          </v-list>
+        </v-flex>
+        <v-flex xs6 sm3>
+          <v-list>
+            <template v-for="(speedDial, index) in speedDials">
+              <v-list-tile avatar ripple :key="index" @click="">
+                <v-list-tile-content>
+                  <v-list-tile-title>{{ speedDial.category }}</v-list-tile-title>
+                  <v-list-tile-sub-title class="text--primary">{{ speedDial.account }}</v-list-tile-sub-title>
+                </v-list-tile-content>
+              </v-list-tile>
+              <v-divider v-if="index + 1 < speedDials.length" :key="`divider-${index}`"></v-divider>
+            </template>
+          </v-list>
+        </v-flex>
+      </v-layout>
+    </v-container>
+    <v-divider></v-divider>
+    <v-container>
+      <v-layout>
+        <v-flex xs12 sm6>
+          <v-list two-line>
+            <template v-for="(speedDial, index) in speedDials">
+              <v-list-tile avatar ripple :key="index" @click="">
+                <v-list-tile-content>
+                  <v-list-tile-title>{{ speedDial.category }}</v-list-tile-title>
+                  <v-list-tile-sub-title class="text--primary">{{ speedDial.account }}</v-list-tile-sub-title>
+                </v-list-tile-content>
+                <v-list-tile-action>
+                  <v-list-tile-action-text>{{ speedDial.amount }}</v-list-tile-action-text>
+                </v-list-tile-action>
+              </v-list-tile>
+              <v-divider v-if="index + 1 < speedDials.length" :key="`divider-${index}`"></v-divider>
+            </template>
+          </v-list>
+        </v-flex>
+      </v-layout>
+    </v-container>
 
 
     </v-toolbar>
@@ -52,15 +81,14 @@
     },
     data () {
       return {
-        speedDials : [{
-          category: "Food",
-          account: "Cash",
-          amount: 100
-        }, {
-          category: "Transportation",
-          account: "Metrobank",
-          amount: 2000
-        }]
+        speedDials : [
+          {category: "Food", account: "Cash", amount: 100 },
+          {category: "Transportation", account: "Metrobank", amount: 2000},
+          {category: "Food", account: "Cash", amount: 100 },
+          {category: "Transportation", account: "Metrobank", amount: 2000},
+          {category: "Food", account: "Cash", amount: 100 },
+          {category: "Transportation", account: "Metrobank", amount: 2000}
+        ]
       }
     }
   }
