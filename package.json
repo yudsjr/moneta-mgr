@@ -10,14 +10,15 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "ajv": "^6.4.0",
     "connect-history-api-fallback": "^1.5.0",
     "express": "^4.16.2",
     "firebase": "^4.10.1",
     "moment": "^2.20.1",
-    "vue": "^2.5.3",
+    "vue": "^2.5.16",
     "vue-router": "^3.0.1",
     "vue-select": "github:sagalbot/vue-select",
-    "vuetify": "^1.0.4",
+    "vuetify": "^1.0.11",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
@@ -51,7 +52,7 @@
     "url-loader": "^0.5.8",
     "vue-loader": "^13.7.1",
     "vue-style-loader": "^3.1.2",
-    "vue-template-compiler": "^2.5.3",
+    "vue-template-compiler": "^2.5.16",
     "webpack": "^3.11.0",
     "webpack-bundle-analyzer": "^2.11.1",
     "webpack-dev-server": "^2.11.2",
