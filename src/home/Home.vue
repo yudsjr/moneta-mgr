@@ -167,15 +167,17 @@
         </v-card>
       </v-dialog>
 
-      <v-dialog v-model="newExpenseDialog"
-        fullscreen
-        transition="dialog-bottom-transition"
-        :overlay="false"
-        scrollable>
-        <v-card tile>
-          <new-expense @close="closeDialog"></new-expense>
-        </v-card>
-      </v-dialog>
+      <div v-if="renderNewExpense">
+        <v-dialog v-model="newExpenseDialog"
+          fullscreen
+          transition="dialog-bottom-transition"
+          :overlay="false"
+          scrollable>
+          <v-card tile>
+            <new-expense @close="closeDialog"></new-expense>
+          </v-card>
+        </v-dialog>
+      </div>
 
       <v-speed-dial
         v-model="fab"
@@ -197,7 +199,7 @@
         <v-btn fab dark small color="indigo">
           <v-icon>add</v-icon>
         </v-btn>
-        <v-btn fab dark small color="red" @click.native="newExpenseDialog = true">
+        <v-btn fab dark small color="red" @click.native="openNewExpense()">
           <v-icon>file_upload</v-icon>
         </v-btn>
       </v-speed-dial>
@@ -220,11 +222,17 @@ export default {
   methods: {
     closeDialog(data) {
       this.newExpenseDialog = data
+    },
+    openNewExpense() {
+      this.renderNewExpense = false
+      this.$nextTick(() => this.renderNewExpense = true)
+      this.$nextTick(() => this.newExpenseDialog = true)
     }
   },
   data () {
     return {
       newExpenseDialog: false,
+      renderNewExpense: true,
       fab: false,
       drawer: null,
       itemscard: [
