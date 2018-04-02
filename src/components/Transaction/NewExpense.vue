@@ -88,7 +88,7 @@
         this.$emit("close", false)
       },
       showAmountModal(expense) {
-        
+        console.log('show modal for account ' + expense.account + ' and category ' + expense.category)
       }
     },
     data () {
