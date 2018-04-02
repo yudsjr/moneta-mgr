@@ -22,7 +22,7 @@
         <v-flex xs6 sm3>
           <v-list>
             <template v-for="(speedDial, index) in speedDials">
-              <v-list-tile avatar ripple :key="index" @click="test = 'df'">
+              <v-list-tile avatar ripple :key="index" @click="">
                 <v-list-tile-content>
                   <v-list-tile-title>{{ speedDial.category }}</v-list-tile-title>
                   <v-list-tile-sub-title class="text--primary">{{ speedDial.account }}</v-list-tile-sub-title>
@@ -54,7 +54,6 @@
           <v-list dense>
             <transition-group name="list" tag="p">
             <span v-for="(expense, index) in expensesToSave" v-bind:key="expense">
-              <template>
               <v-list-tile avatar ripple :key="index" @click="">
                 <v-list-tile-content>
                   <v-list-tile-title>{{ expense.category }} &mdash; <small>{{ expense.amount }}</small></v-list-tile-title>
@@ -65,7 +64,6 @@
                 </v-list-tile-action>
               </v-list-tile>
               <v-divider v-if="index + 1 < expensesToSave.length" :key="`divider-${index}`"></v-divider>
-              </template>
             </span>
             </transition-group>
           </v-list>
@@ -95,7 +93,6 @@
     data () {
       return {
         date: null,
-        test: "test value",
         speedDials : [
           {category: "Food", account: "Cash", amount: 100 },
           {category: "Transportation", account: "Metrobank", amount: 2000},

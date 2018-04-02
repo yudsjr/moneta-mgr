@@ -167,17 +167,16 @@
         </v-card>
       </v-dialog>
 
-      <div v-if="renderNewExpense">
-        <v-dialog v-model="newExpenseDialog"
-          fullscreen
-          transition="dialog-bottom-transition"
-          :overlay="false"
-          scrollable>
-          <v-card tile>
-            <new-expense @close="closeDialog"></new-expense>
-          </v-card>
-        </v-dialog>
-      </div>
+      <v-dialog v-model="newExpenseDialog"
+        fullscreen
+        transition="dialog-bottom-transition"
+        :overlay="false"
+        v-on:after-leave="testAfterLeave"
+        scrollable>
+        <v-card tile>
+          <new-expense @close="closeDialog"></new-expense>
+        </v-card>
+      </v-dialog>
 
       <v-speed-dial
         v-model="fab"
@@ -224,9 +223,10 @@ export default {
       this.newExpenseDialog = data
     },
     openNewExpense() {
-      this.renderNewExpense = false
-      this.$nextTick(() => this.renderNewExpense = true)
-      this.$nextTick(() => this.newExpenseDialog = true)
+      this.newExpenseDialog = true
+    },
+    testAfterLeave(el) {
+      console.log('test after leave')
     }
   },
   data () {
